@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domino Friseur Köln — Ihr Friseursalon in Köln</title>
+  <meta name="description" content="Domino Friseur Köln — Professionelle Haarschnitte, Colorationen und Styling in Köln. Jetzt Termin vereinbaren.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #C9A96E;
+      --accent-light: #dbbf85;
+      --accent-dim: rgba(201,169,110,0.12);
+      --bg: #faf9f7;
+      --bg2: #f3f1ed;
+      --bg3: #edeae4;
+      --surface: #fff;
+      --border: rgba(0,0,0,0.08);
+      --text: #1a1916;
+      --text-muted: rgba(26,25,22,0.5);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+    /* COOKIE */
+    #cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #fff; border-top: 1px solid var(--border);
+      padding: 1.1rem 2rem; display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; z-index: 9999; flex-wrap: wrap;
+    }
+    #cookie-banner p { font-size: 0.8rem; color: var(--text-muted); max-width: 650px; line-height: 1.5; }
+    #cookie-banner a { color: var(--accent); }
+    .cookie-btns { display: flex; gap: 0.6rem; }
+    .cookie-btns button { padding: 0.45rem 1.2rem; border-radius: 3px; font-size: 0.78rem; font-family: 'DM Sans',sans-serif; cursor: pointer; border: none; font-weight: 500; }
+    .btn-accept { background: var(--accent); color: #fff; }
+    .btn-decline { background: var(--bg3); color: var(--text-muted); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.3rem 2.5rem; display: flex; align-items: center;
+      justify-content: space-between; background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    nav.scrolled { padding: 0.9rem 2.5rem; }
+    .nav-logo { font-family: 'Cormorant Garamond',serif; font-size: 1.5rem; font-weight: 700; color: var(--text); letter-spacing: 0.04em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { padding: 0.55rem 1.4rem; background: var(--text); color: #fff; text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; font-weight: 500; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px; overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+    }
+    .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+    .hero-title {
+      font-family: 'Cormorant Garamond',serif; font-size: clamp(3rem,5vw,4.5rem);
+      font-weight: 700; line-height: 1.05; color: var(--text); margin-bottom: 0.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-family: 'Cormorant Garamond',serif; font-size: 1.3rem; font-style: italic; color: var(--text-muted); margin-bottom: 2rem; }
+    .hero-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; max-width: 440px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-dark { padding: 0.9rem 2rem; background: var(--text); color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; transition: background 0.2s; }
+    .btn-dark:hover { background: var(--accent); }
+    .btn-outline-dark { padding: 0.9rem 2rem; border: 1px solid var(--border); color: var(--text); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.06em; transition: border-color 0.2s; }
+    .btn-outline-dark:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-right { position: relative; overflow: hidden; min-height: 600px; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--bg) 0%, transparent 15%); pointer-events: none; }
+
+    /* STATS */
+    .stats { background: var(--text); padding: 2rem 2.5rem; }
+    .stats-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond',serif; font-size: 2.5rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+
+    /* SECTIONS */
+    section { padding: 6rem 2.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.9rem; }
+    .section-title { font-family: 'Cormorant Garamond',serif; font-size: clamp(2rem,4vw,3rem); font-weight: 700; line-height: 1.15; color: var(--text); margin-bottom: 0.75rem; }
+    .section-title em { font-style: italic; }
+    .section-lead { font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; max-width: 560px; }
+    .divider { width: 48px; height: 2px; background: var(--accent); margin: 1.25rem 0; }
+
+    /* SERVICES */
+    .services { background: var(--bg); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .service-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+    .service-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-name { font-family: 'Cormorant Garamond',serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .service-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+    .service-price { font-size: 0.88rem; font-weight: 500; color: var(--accent); }
+
+    /* TEAM */
+    .team { background: var(--bg2); }
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .team-card { text-align: center; }
+    .team-img { width: 100%; aspect-ratio: 3/4; overflow: hidden; border-radius: 2px; margin-bottom: 1.25rem; }
+    .team-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .team-card:hover .team-img img { transform: scale(1.04); }
+    .team-name { font-family: 'Cormorant Garamond',serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* GALLERY */
+    .gallery { background: var(--bg); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 3rem; }
+    .gallery-item { overflow: hidden; aspect-ratio: 1; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    /* REVIEWS */
+    .reviews { background: var(--bg2); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 3rem; }
+    .review-card { background: var(--surface); border: 1px solid var(--border); padding: 1.75rem; }
+    .review-stars { color: var(--accent); margin-bottom: 0.75rem; font-size: 0.88rem; }
+    .review-text { font-size: 0.86rem; color: var(--text-muted); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+    .review-author { font-size: 0.8rem; font-weight: 500; }
+    .review-via { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+    /* INFO */
+    .info { background: var(--bg); }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .info-block h3 { font-family: 'Cormorant Garamond',serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border); }
+    .info-row { display: flex; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+    .info-day { color: var(--text-muted); }
+    .info-time { color: var(--text); font-weight: 500; }
+    .contact-item { display: flex; gap: 0.9rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .contact-icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .contact-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .contact-value { font-size: 0.88rem; color: var(--text); }
+    .contact-value a { color: var(--text); text-decoration: none; }
+    .contact-value a:hover { color: var(--accent); }
+    .map-embed { margin-top: 1.5rem; border: 1px solid var(--border); }
+    .map-embed iframe { display: block; width: 100%; height: 230px; }
+
+    /* CTA */
+    .cta { background: var(--text); text-align: center; }
+    .cta .section-title { color: #fff; margin: 0 auto 0.75rem; }
+    .cta .section-eyebrow { color: var(--accent); }
+    .cta .section-lead { color: rgba(255,255,255,0.55); margin: 0 auto 2.5rem; }
+    .cta .divider { margin: 0 auto 1.5rem; }
+
+    /* FOOTER */
+    footer { background: #111; padding: 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-logo { font-family: 'Cormorant Garamond',serif; font-size: 1.2rem; font-weight: 700; color: #fff; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+
+    @media (max-width:900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 350px; }
+      .hero-left { padding: 4rem 2rem; }
+      .services-grid, .team-grid, .reviews-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cookie-banner">
+  <p>Wir verwenden Cookies, um dein Erlebnis zu verbessern. Mehr Infos in unserer <a href="#">Datenschutzerklärung</a>.</p>
+  <div class="cookie-btns">
+    <button class="btn-decline" onclick="document.getElementById('cookie-banner').style.display='none'">Ablehnen</button>
+    <button class="btn-accept" onclick="document.getElementById('cookie-banner').style.display='none'">Akzeptieren</button>
+  </div>
+</div>
+
+<nav id="navbar">
+  <div class="nav-logo">Domino<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Leistungen</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#gallery">Galerie</a></li>
+    <li><a href="#info">Kontakt</a></li>
+  </ul>
+  <a href="#info" class="nav-cta">Termin buchen</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Friseursalon · Köln</p>
+    <h1 class="hero-title"><em>Dein</em> Stil.<br>Unser Handwerk.</h1>
+    <p class="hero-sub">Haircuts, Color & Care</p>
+    <p class="hero-desc">Professionelle Friseurkunst in Köln — für Damen, Herren und Kinder. Wir nehmen uns Zeit für dich, deine Haare und deinen individuellen Look.</p>
+    <div class="hero-actions">
+      <a href="#info" class="btn-dark">Termin vereinbaren</a>
+      <a href="#services" class="btn-outline-dark">Unsere Leistungen</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1000&q=88&fit=crop" alt="Domino Friseur Köln">
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stats-inner">
+    <div><div class="stat-num">★ 4.8</div><div class="stat-label">Google Rating</div></div>
+    <div><div class="stat-num">500+</div><div class="stat-label">Stammkunden</div></div>
+    <div><div class="stat-num">15+</div><div class="stat-label">Jahre Erfahrung</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Zufriedenheit</div></div>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="container">
+    <p class="section-eyebrow">Was wir anbieten</p>
+    <h2 class="section-title">Unsere <em>Leistungen</em></h2>
+    <p class="section-lead">Von Schnitt bis Farbe — wir bieten alles, was deine Haare brauchen.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✂️</div>
+        <div class="service-name">Damen-Haarschnitt</div>
+        <div class="service-desc">Waschen, Schneiden, Föhnen — individuell auf deinen Typ und Wunsch abgestimmt. Inklusive ausführlicher Beratung.</div>
+        <div class="service-price">ab 35 €</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💈</div>
+        <div class="service-name">Herren-Haarschnitt</div>
+        <div class="service-desc">Klassischer Schnitt oder modernes Styling — inklusive Waschen und Föhnen. Auf Wunsch mit Bartpflege.</div>
+        <div class="service-price">ab 22 €</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Coloration & Highlights</div>
+        <div class="service-desc">Einfärbung, Strähnen, Balayage — mit hochwertigen Produkten für langanhaltende Farbergebnisse.</div>
+        <div class="service-price">ab 55 €</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Glättung & Dauerwelle</div>
+        <div class="service-desc">Keratin-Glättung für seidenweiches Haar oder Dauerwelle für mehr Volumen und Locken.</div>
+        <div class="service-price">ab 80 €</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👶</div>
+        <div class="service-name">Kinder-Haarschnitt</div>
+        <div class="service-desc">Liebevoller Schnitt für die Kleinen in entspannter Atmosphäre — mit viel Geduld und einem Lächeln.</div>
+        <div class="service-price">ab 15 €</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💆</div>
+        <div class="service-name">Haarkur & Pflege</div>
+        <div class="service-desc">Intensive Pflege für strapaziertes Haar — Keratinkur, Öl-Treatment und professionelle Tiefenpflege.</div>
+        <div class="service-price">ab 20 €</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="container">
+    <p class="section-eyebrow">Unser Team</p>
+    <h2 class="section-title">Die <em>Menschen</em> hinter Domino</h2>
+    <p class="section-lead">Leidenschaftliche Friseure mit Erfahrung und einem echten Gespür für jeden Typ.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-img"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&q=85&fit=crop" alt="Friseurin"></div>
+        <div class="team-name">Sandra K.</div>
+        <div class="team-role">Inhaberin & Stylistin</div>
+      </div>
+      <div class="team-card">
+        <div class="team-img"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=85&fit=crop" alt="Friseur"></div>
+        <div class="team-name">Marco T.</div>
+        <div class="team-role">Senior Stylist</div>
+      </div>
+      <div class="team-card">
+        <div class="team-img"><img src="https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?w=600&q=85&fit=crop" alt="Friseurin"></div>
+        <div class="team-name">Aylin D.</div>
+        <div class="team-role">Color-Spezialistin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container">
+    <p class="section-eyebrow">Unsere Arbeit</p>
+    <h2 class="section-title">Looks &amp; <em>Styles</em></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=85&fit=crop" alt="Hairstyle 1"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=500&q=85&fit=crop" alt="Hairstyle 2"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=500&q=85&fit=crop" alt="Hairstyle 3"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1527799820374-87991a7a11a3?w=500&q=85&fit=crop" alt="Hairstyle 4"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&q=85&fit=crop" alt="Salon Interior"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=85&fit=crop" alt="Hairstyle 5"></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <p class="section-eyebrow">Kundenstimmen</p>
+    <h2 class="section-title">Was Kunden über uns <em>sagen</em></h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Bester Friseur in meiner Ecke Kölns! Sandra hat genau verstanden was ich wollte. Werde definitiv wiederkommen — super Beratung und toller Schnitt."</p>
+        <div class="review-author">Julia M.</div>
+        <div class="review-via">Google Reviews</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Marco ist ein absoluter Profi. Haarschnitt und Bart in einem — das Ergebnis war perfekt. Entspannte Atmosphäre, faire Preise. Genau richtig."</p>
+        <div class="review-author">David S.</div>
+        <div class="review-via">Google Reviews</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Aylin hat meine Haare gerettet! Nach einer schlechten Coloration woanders hat sie alles gerichtet. Ich bin begeistert und komme nur noch hierhin."</p>
+        <div class="review-author">Lena F.</div>
+        <div class="review-via">Google Reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="container">
+    <p class="section-eyebrow">Besuch uns</p>
+    <h2 class="section-title">Öffnungszeiten &amp; <em>Kontakt</em></h2>
+    <div class="info-grid">
+      <div class="info-block">
+        <h3>Öffnungszeiten</h3>
+        <div class="info-row"><span class="info-day">Montag</span><span class="info-time">[VERIFIZIEREN]</span></div>
+        <div class="info-row"><span class="info-day">Dienstag – Freitag</span><span class="info-time">[VERIFIZIEREN]</span></div>
+        <div class="info-row"><span class="info-day">Samstag</span><span class="info-time">[VERIFIZIEREN]</span></div>
+        <div class="info-row"><span class="info-day">Sonntag</span><span class="info-time">Geschlossen</span></div>
+        <p style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);">Termine auch außerhalb der Öffnungszeiten auf Anfrage möglich.</p>
+        <div class="map-embed">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=6.93%2C50.925%2C6.955%2C50.94&layer=mapnik" allowfullscreen="" loading="lazy" style="border:0;"></iframe>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>Kontakt</h3>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div><div class="contact-label">Adresse</div><div class="contact-value">Köln<br>[VERIFIZIEREN — genaue Adresse]</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <div><div class="contact-label">Telefon</div><div class="contact-value"><a href="tel:[VERIFIZIEREN]">[VERIFIZIEREN]</a></div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📧</span>
+          <div><div class="contact-label">E-Mail / Online-Termin</div><div class="contact-value"><a href="#">Termin online buchen</a></div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🚇</span>
+          <div><div class="contact-label">ÖPNV</div><div class="contact-value">[VERIFIZIEREN — nächste Haltestelle]</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <p class="section-eyebrow">Bereit für deinen neuen Look?</p>
+    <h2 class="section-title">Ruf uns an oder komm vorbei</h2>
+    <div class="divider"></div>
+    <p class="section-lead">Wir freuen uns auf dich! Buche deinen Termin bequem telefonisch oder komm einfach spontan vorbei — wir versuchen immer, einen Platz für dich zu finden.</p>
+    <div class="hero-actions" style="justify-content:center;margin-top:2.5rem;">
+      <a href="#info" class="btn-dark" style="background:var(--accent);color:#111;">Termin buchen</a>
+      <a href="#services" class="btn-outline-dark" style="border-color:rgba(255,255,255,0.2);color:#fff;">Alle Leistungen</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Domino<span>.</span> Friseur Köln</div>
+    <div class="footer-links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+      <a href="#">Kontakt</a>
+    </div>
+    <div class="footer-copy">© 2025 Domino Friseur Köln</div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+</script>
+</body>
+</html>
