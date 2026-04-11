@@ -516,6 +516,25 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
+
+<script>
+/* Fallback: ensure all content is visible even if animations fail */
+setTimeout(function(){
+  var els = document.querySelectorAll('[style*="opacity"]');
+  els.forEach(function(el){
+    if(getComputedStyle(el).opacity === '0'){
+      el.style.transition = 'opacity 0.5s ease';
+      el.style.opacity = '1';
+    }
+  });
+  /* Also check CSS-animated elements */
+  document.querySelectorAll('.fade-in,.slide-up,.animate-in,.reveal,.scroll-reveal').forEach(function(el){
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+}, 3000);
+</script>
+
 </body>
 </html>
 =======
@@ -545,5 +564,24 @@ document.addEventListener('DOMContentLoaded',function(){
 </div></section>
 <section id="contact"><div class="section-label">Termin</div><h2 class="section-title">Besuchen Sie uns</h2><div class="contact-grid"><div class="contact-cards"><div class="c-card"><div class="c-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h4>Adresse</h4><p>An den Dominikanern 2<br>50668 Köln</p></div><div class="c-card"><div class="c-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg></div><h4>Telefon</h4><p>+49 221 134707</p></div><div class="c-card"><div class="c-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h4>Öffnungszeiten</h4><p>Mo: 10—19 Uhr<br>Di—Fr: 08—19 Uhr<br>Sa: 08—15 Uhr</p></div><div class="c-card"><div class="c-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg></div><h4>Termin</h4><p>Telefonisch oder<br>direkt im Salon</p></div></div><div class="contact-map"><iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Domino+Friseur+Köln+Dominikanern&zoom=15" allowfullscreen loading="lazy"></iframe></div></div></section>
 <footer class="footer"><div class="footer-inner"><div class="footer-brand"><h3>Domino Friseur</h3><p>Premium Friseursalon in Köln.</p></div><div class="footer-col"><h4>Navigation</h4><ul><li><a href="#about">Über uns</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Galerie</a></li></ul></div><div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:+49221134707">+49 221 134707</a></li><li><a>An den Dominikanern 2<br>50668 Köln</a></li></ul></div><div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo: 10—19 Uhr<br>Di—Fr: 08—19 Uhr<br>Sa: 08—15 Uhr</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Domino Friseur, Köln.</p><p>Crafted with ♦ by SYSTEMS™</p></div></footer>
-<script>window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>80)});const o=new IntersectionObserver(e=>{e.forEach(t=>{if(t.isIntersecting){t.target.style.opacity='1';t.target.style.transform='translateY(0)'}});},{threshold:.1});document.querySelectorAll('section,.feature,.menu-item,.review,.c-card,.g-item').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='opacity .8s ease,transform .8s ease';o.observe(el)});document.querySelector('.nav').style.opacity='1';document.querySelector('.nav').style.transform='none';document.querySelector('.hero').style.opacity='1';document.querySelector('.hero').style.transform='none';</script></body></html>
+<script>window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>80)});const o=new IntersectionObserver(e=>{e.forEach(t=>{if(t.isIntersecting){t.target.style.opacity='1';t.target.style.transform='translateY(0)'}});},{threshold:.1});document.querySelectorAll('section,.feature,.menu-item,.review,.c-card,.g-item').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='opacity .8s ease,transform .8s ease';o.observe(el)});document.querySelector('.nav').style.opacity='1';document.querySelector('.nav').style.transform='none';document.querySelector('.hero').style.opacity='1';document.querySelector('.hero').style.transform='none';</script>
+<script>
+/* Fallback: ensure all content is visible even if animations fail */
+setTimeout(function(){
+  var els = document.querySelectorAll('[style*="opacity"]');
+  els.forEach(function(el){
+    if(getComputedStyle(el).opacity === '0'){
+      el.style.transition = 'opacity 0.5s ease';
+      el.style.opacity = '1';
+    }
+  });
+  /* Also check CSS-animated elements */
+  document.querySelectorAll('.fade-in,.slide-up,.animate-in,.reveal,.scroll-reveal').forEach(function(el){
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+}, 3000);
+</script>
+
+</body></html>
 >>>>>>> a096681 (Premium single-file HTML rebuild)
